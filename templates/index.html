@@ -1,0 +1,56 @@
+{% include "links.html" %}
+
+<body>
+	<div class="row w-100">
+		<div class="col-2"></div>
+		<div class="col-8">
+			<br>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 text-center">
+					<h2>¿Qué quieres hacer?</h2>
+				</div>
+				<div class="col-1">
+					<a href="{% url 'logout' %}">
+						<i class="fa fa-power-off fa-lg" style="color:grey;margin-top:12px"></i>
+					</a>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-2"></div>
+				<a href="{% url 'aita:nuevo-ingreso' %}" class="col-3 btn">
+					<div class="jumbotron text-center">
+						<i class="fa fa-sign-in-alt fa-7x" style="color:green"></i>
+						<br>
+						<h5 style="color:black">Nuevo ingreso</h5>
+					</div>
+				</a>
+				<div class="col-2"></div>
+				<a href="{% url 'aita:nuevo-gasto' %}" class="col-3 btn">
+					<div class="jumbotron text-center">
+						<i class="fa fa-sign-out-alt fa-7x" style="color:tomato"></i>
+						<br>
+						<h5 style="color:black">Nuevo gasto</h5>
+					</div>
+				</a>
+				<div class="col-2"></div>
+			</div>
+			<hr>
+			<div class="row justify-content-center">
+				<a href="{% url 'aita:tabla-anterior' %}">
+					<button type="button" class="btn btn-outline-primary">Trimestre anterior</button>
+				</a>
+				&nbsp&nbsp&nbsp
+				<a href="{% url 'aita:tabla' %}">
+					<button type="button" class="btn btn-outline-primary">Trimestre actual</button>
+				</a>
+				&nbsp&nbsp&nbsp
+				<a href="{% url 'aita:evolucion' %}">
+					<button type="button" class="btn btn-outline-primary">Evolucion</button>
+				</a>
+			</div>
+		</div>
+		<div class="col-2"></div>
+	</div>
+</body>

@@ -1,0 +1,96 @@
+{% include "links.html" %}
+
+<body>
+	<div class="row w-100">
+		<div class="col-2"></div>
+		<div class="col-8">
+			<br>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 text-center">
+					<h2>¿Qué quieres hacer?</h2>
+				</div>
+				<div class="col-1">
+					<a href="{% url 'logout' %}">
+						<i class="fa fa-power-off fa-lg" style="color:grey;margin-top:12px"></i>
+					</a>
+				</div>
+			</div>
+			<hr>
+			<div class="row justify-content-center">
+				<!-- grafico -->
+				<div id="main" style="width: 800px;height:400px;">
+					<script type="text/javascript">
+						var myChart = echarts.init(document.getElementById('main'));
+						option = {
+							title : {
+								text: 'Evolución',
+							},
+							tooltip : {
+								trigger: 'axis'
+							},
+							legend: {
+								data:['Gastos','Ingresos']
+							},
+							toolbox: {
+								show : false,
+								feature : {
+									dataView : {show: false, readOnly: false},
+									magicType : {show: true, type: ['line', 'bar']},
+									restore : {show: false},
+									saveAsImage : {show: true}
+								}
+							},
+							calculable : true,
+							xAxis : [
+								{
+									type : 'category',
+									data : {{timeline|safe}}
+								}
+							],
+							yAxis : [
+								{
+									type : 'value'
+								}
+							],
+							series : [
+								{
+									name:'Gastos',
+									type:'bar',
+									data:{{gasto_list}},
+									markLine : {
+										data : [
+											{type : 'average', name: 'Media'}
+										]
+									}
+								},
+								{
+									name:'Ingresos',
+									type:'bar',
+									data:{{ingreso_list}},
+									markLine : {
+										data : [
+											{type : 'average', name : 'Media'}
+										]
+									}
+								}
+							]
+						};
+						myChart.setOption(option);
+					</script>
+				</div>
+				<!-- fin grafico -->
+			</div>
+			<hr>
+			<div class="row justify-content-center">
+				<a href="{% url 'aita:index' %}">
+					<button type="button" class="btn btn-outline-primary">Volver</button>
+				</a>
+			</div>
+		</div>
+		<div class="col-2"></div>
+	</div>
+</body>
+	
+
+	

@@ -1,0 +1,107 @@
+{% include "links.html" %}
+
+<body>
+	<div class="row w-100">
+		<div class="col-2"></div>
+		<div class="col-8">
+			<br>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 text-center">
+					<h2>Tabla de contenido</h2>
+				</div>
+				<div class="col-1">
+					<a href="{% url 'logout' %}">
+						<i class="fa fa-power-off fa-lg" style="color:grey;margin-top:12px"></i>
+					</a>
+				</div>
+			</div>
+			<hr>
+			<h3>Ingresos</h3>
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Cliente</th>
+						<th scope="col">Tipo</th>
+						<th scope="col">Nº Factura</th>
+						<th scope="col">Fecha</th>
+						<th scope="col">Base imponible</th>
+						<th scope="col">IVA</th>
+						<th scope="col">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for object in ingreso %}
+						<tr>
+							<td>
+								<h6><strong>{{object.cliente}}</strong></h6>
+								<h6>{{object.cliente.cif}}</h6>
+								<div>{{object.cliente.direccion}}</div>
+							</td>
+							<td>{{object.tipo}}</td>
+							<td>{{object.n_factura}}</td>
+							<td>{{object.fecha}}</td>
+							<td>{{object.base_imponible}} €</td>
+							<td>{{object.iva}} %</td>
+							<td>{{object.total}} €</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="text-right">
+				<h3>Total: {{sum_ingreso}} €</h3>
+			</div>
+			<hr>
+			<h3>Gastos</h3>
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Proveedor</th>
+						<th scope="col">Tipo</th>
+						<th scope="col">Nº Factura</th>
+						<th scope="col">Fecha</th>
+						<th scope="col">Base imponible</th>
+						<th scope="col">IVA</th>
+						<th scope="col">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for object in gasto %}
+						<tr>
+							<td>
+								<h6><strong>{{object.proveedor}}</strong></h6>
+								<h6>{{object.proveedor.cif}}</h6>
+								<h6>{{object.proveedor.direccion}}</h6>
+							</td>
+							<td>{{object.tipo}}</td>
+							<td>{{object.n_factura}}</td>
+							<td>{{object.fecha}}</td>
+							<td>{{object.base_imponible}} €</td>
+							<td>{{object.iva}} %</td>
+							<td>{{object.total}} €</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="text-right">
+				<h3>Total: {{sum_gasto}} €</h3>
+			</div>
+			<hr>
+			<div class="text-right">
+				{% if balance >= 0 %}
+					<h2 style="color: green">Balance: {{balance}} €</h2>
+				{% else %}
+					<h2 style="color: tomato">Balance: {{balance}} €</h2>
+				{% endif %}
+			</div>
+			<hr>
+			<div class="row justify-content-center">
+				<a href="{% url 'aita:index' %}">
+					<button type="button" class="btn btn-outline-danger">Volver</button>
+				</a>
+			</div>
+		</div>
+		<div class="col-2"></div>
+	</div>
+	<br>
+</body>

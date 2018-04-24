@@ -1,0 +1,55 @@
+{% include "links.html" %}
+
+<body>
+	<div class="row w-100">
+		<div class="col-2"></div>
+		<div class="col-8">
+			<br>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 text-center">
+					<h2>Registro clientes</h2>
+				</div>
+				<div class="col-1">
+					<a href="{% url 'logout' %}">
+						<i class="fa fa-power-off fa-lg" style="color:grey;margin-top:12px"></i>
+					</a>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="jumbotron col-12">
+					<form method="POST">
+						{% csrf_token %}
+						<div class="form-group row">
+							<label class="col-2 text-right col-form-label">Nombre</label>
+							<div class="col">
+								{{form.nombre}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 text-right col-form-label">CIF</label>
+							<div class="col">
+								{{form.cif}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 text-right col-form-label">Direccion</label>
+							<div class="col">
+								{{form.direccion}}
+							</div>
+						</div>
+						<div class="text-center">
+							<input type='submit' value='Guardar' class='btn btn-outline-success'>
+							<a href="{% url 'aita:nuevo-gasto' %}">
+								<button type="button" class="btn btn-outline-danger">Volver</button>
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<div class="col-2"></div>
+	</div>
+</body>

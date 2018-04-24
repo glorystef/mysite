@@ -1,0 +1,78 @@
+{% include "links.html" %}
+
+<body>
+	<div class="row w-100">
+		<div class="col-2"></div>
+		<div class="col-8">
+			<br>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 text-center">
+					<h2>Registro gastos</h2>
+				</div>
+				<div class="col-1">
+					<a href="{% url 'logout' %}">
+						<i class="fa fa-power-off fa-lg" style="color:grey;margin-top:12px"></i>
+					</a>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="jumbotron col-12">
+					<form method="POST">
+						{% csrf_token %}
+						<div class="form-group row">
+							<label class="col-2 text-right col-form-label">Proveedor</label>
+							<div class="col">
+								{{form.proveedor}}
+							</div>
+							<div class="col-1">
+								<a href="{% url 'aita:nuevo-proveedor' %}">
+									<i class="fas fa-user-plus fa-2x" style="color:tomato"></i>
+								</a>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 text-right col-form-label">Tipo</label>
+							<div class="col">
+								{{form.tipo}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 text-right col-form-label">Nº factura</label>
+							<div class="col">
+								{{form.n_factura}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 text-right col-form-label">Fecha factura</label>
+							<div class="col" data-provide="datepicker">
+								{{form.fecha}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 text-right col-form-label">Base imponible</label>
+							<div class="col">
+								{{form.base_imponible}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 text-right col-form-label">IVA (%)</label>
+							<div class="col">
+								{{form.iva}}
+							</div>
+						</div>
+						<div class="text-center">
+							<input type='submit' value='Guardar' class='btn btn-outline-success'>
+							<a href="{% url 'aita:index' %}">
+								<button type="button" class="btn btn-outline-danger">Volver</button>
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<div class="col-2"></div>
+	</div>
+</body>
